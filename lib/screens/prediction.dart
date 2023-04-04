@@ -35,35 +35,38 @@ class _PredictionState extends State<Prediction> {
   String _predictionResult = '';
 
   Future<void> _submitForm() async {
-    final response =
-        await http.post(Uri.parse('http://127.0.0.1:5000/prediction'), body: {
-      'X1': _controllerX1.text,
-      'X2': _controllerX2.text,
-      'X3': _controllerX3.text,
-      'X4': _controllerX4.text,
-      'X5': _controllerX5.text,
-      'X6': _controllerX6.text,
-      'X7': _controllerX7.text,
-      'X8': _controllerX8.text,
-      'X9': _controllerX9.text,
-      'X10': _controllerX10.text,
-      'X11': _controllerX11.text,
-      'X12': _controllerX12.text,
-      'X13': _controllerX13.text,
-      'X14': _controllerX14.text,
-      'X15': _controllerX15.text,
-      'X16': _controllerX16.text,
-      'X17': _controllerX17.text,
-      'X18': _controllerX18.text,
-    });
-
+    print("callig api");
+    final response = await http.post(
+        Uri.parse('https://8435-203-194-97-158.in.ngrok.io/prediction'),
+        body: {
+          'X1': _controllerX1.text,
+          'X2': _controllerX2.text,
+          'X3': _controllerX3.text,
+          'X4': _controllerX4.text,
+          'X5': _controllerX5.text,
+          'X6': _controllerX6.text,
+          'X7': _controllerX7.text,
+          'X8': _controllerX8.text,
+          'X9': _controllerX9.text,
+          'X10': _controllerX10.text,
+          'X11': _controllerX11.text,
+          'X12': _controllerX12.text,
+          'X13': _controllerX13.text,
+          'X14': _controllerX14.text,
+          'X15': _controllerX15.text,
+          'X16': _controllerX16.text,
+          'X17': _controllerX17.text,
+          'X18': _controllerX18.text,
+        });
+    print('$response');
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
-        print("apiii");
+      print("apiii");
       setState(() {
-        _predictionResult = data['result'];
+        _predictionResult = data['prediction_text'];
       });
     } else {
+      print("object");
       setState(() {
         _predictionResult = 'Failed to get prediction result.';
       });
@@ -320,6 +323,7 @@ class _PredictionState extends State<Prediction> {
                 ),
                 TextButton(
                   onPressed: () async {
+                    print("alinaenfwnfnwlnfe");
                     await _submitForm();
                   },
                   child: Text(
