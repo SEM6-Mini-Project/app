@@ -1,40 +1,31 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:prediction/screens/splash.dart';
-import 'package:hexcolor/hexcolor.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:prediction/realtime_db.dart';
+import 'package:prediction/LoginPage.dart';
 
-void main() {
-  runApp(LoginUiApp());
-}
 
-class LoginUiApp extends StatelessWidget {
-
-  Color _primaryColor = HexColor('#DC54FE');
-  Color _accentColor = HexColor('#8A02AE');
-
-  // Design color
-  // Color _primaryColor= HexColor('#FFC867');
-  // Color _accentColor= HexColor('#FF3CBD');
-
-  // Our Logo Color
-  // Color _primaryColor= HexColor('#D44CF6');
-  // Color _accentColor= HexColor('#5E18C8');
-
-  // Our Logo Blue Color
-  //Color _primaryColor= HexColor('#651BD2');
-  //Color _accentColor= HexColor('#320181');
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Login UI',
-      theme: ThemeData(
-        primaryColor: _primaryColor,
-        accentColor: _accentColor,
-        scaffoldBackgroundColor: Colors.grey.shade100,
-        primarySwatch: Colors.grey,
-      ),
-      home: SplashScreen(title: 'Flutter Login UI'),
-    );
-  }
+Future<void> main() async {
+  // await Firebase.initializeApp();
+  // FirebaseAuth.instance.setSettings(
+  //   appVerificationDisabledForTesting: true,
+  // );
+  // var LogLevel;
+  // FirebaseAuth.instance.setLogLevel(LogLevel.verbose);
+  // WidgetsFlutterBinding.ensureInitialized();
+  FirebaseApp myapp = await Firebase.initializeApp(
+    options: const FirebaseOptions(
+        apiKey: "AIzaSyB2pR40icU76TNgB0k1_qphNZIK4M7vu3M",
+        authDomain: "bankruptcy-prediction-f1817.firebaseapp.com",
+        databaseURL:
+            "https://bankruptcy-prediction-f1817-default-rtdb.firebaseio.com",
+        projectId: "bankruptcy-prediction-f1817",
+        storageBucket: "bankruptcy-prediction-f1817.appspot.com",
+        messagingSenderId: "207241405329",
+        appId: "1:207241405329:web:07f0d178a3bdc2748ef030",
+        measurementId: "G-Z9K70N1TPW"),
+  );
+  runApp(MaterialApp(
+    home: LoginPage(),
+  ));
 }
