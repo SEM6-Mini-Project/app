@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:prediction/screens/splash.dart';
+import 'package:prediction/screens/prediction.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 void main() {
@@ -7,9 +7,8 @@ void main() {
 }
 
 class LoginUiApp extends StatelessWidget {
-
-  Color _primaryColor = HexColor('#DC54FE');
-  Color _accentColor = HexColor('#8A02AE');
+  final Color _primaryColor = HexColor('#DC54FE');
+  final Color _accentColor = HexColor('#8A02AE');
 
   // Design color
   // Color _primaryColor= HexColor('#FFC867');
@@ -34,7 +33,7 @@ class LoginUiApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.grey.shade100,
         primarySwatch: Colors.grey,
       ),
-      home: SplashScreen(title: 'Flutter Login UI'),
+      home: const PredictionPage(),
     );
   }
 }
