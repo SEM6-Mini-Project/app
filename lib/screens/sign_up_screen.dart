@@ -4,6 +4,7 @@ import 'package:prediction/screens/home.dart';
 import 'package:prediction/screens/sign_in_screen.dart';
 import 'package:prediction/utils/color_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:prediction/utils/styles.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -25,7 +26,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
         elevation: 0,
         title: const Text(
           "Sign Up",
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          style: TextStyle(
+              fontSize: 40, fontWeight: FontWeight.bold, color: EXTRA),
         ),
       ),
       body: Container(
@@ -33,9 +35,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
               gradient: LinearGradient(colors: [
-            hexStringToColor("CB2B93"),
-            hexStringToColor("9546C4"),
-            hexStringToColor("5E61F4")
+            // hexStringToColor("CB2B93"),
+            // hexStringToColor("9546C4"),
+            // hexStringToColor("5E61F4")
+            PRIMARY, SECONDARY, EXTRA
           ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
           child: SingleChildScrollView(
               child: Padding(
@@ -71,11 +74,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         _emailTextController.text +
                         "\n pass: " +
                         _passwordTextController.text);
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => SignInScreen()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SignInScreen()));
                   }).onError((error, stackTrace) {
                     print("Error ${error.toString()}");
-                  }); 
+                  });
                 })
               ],
             ),
