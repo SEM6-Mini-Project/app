@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:prediction/screens/prediction.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:prediction/screens/sign_in_screen.dart';
+import 'package:prediction/screens/dashboard.dart';
 
 Future<void> main() async {
   FirebaseApp myapp = await Firebase.initializeApp(
@@ -49,7 +50,7 @@ class LoginUiApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.grey.shade100,
         primarySwatch: Colors.grey,
       ),
-      home: const SignInScreen(),
+      home: Dashboard(),
     );
   }
 }
