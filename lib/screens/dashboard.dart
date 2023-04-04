@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:prediction/screens/prediction.dart';
 import 'package:prediction/screens/reset_password.dart';
 import 'package:prediction/screens/sign_in_screen.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,7 @@ class Dashboard extends StatelessWidget {
           //   ),
           //   onPressed: () => Navigator.pop(context),
           // ),
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.purple.shade400,
           title: Text(
             'Dashboard',
             style: TextStyle(color: Colors.white),
@@ -62,7 +63,7 @@ class Dashboard extends StatelessWidget {
                   child: Container(
                     alignment: Alignment.bottomLeft,
                     child: Text(
-                      "FlutterTutorial.Net",
+                      "Welcome",
                       style: TextStyle(
                           fontSize: 25,
                           color: Colors.white,
@@ -216,7 +217,7 @@ class Dashboard extends StatelessWidget {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  // Code for Predict button action
+                  MaterialPageRoute(builder: (context) => PredictionPage());
                 },
                 child: Text('Predict'),
                 style: ElevatedButton.styleFrom(
