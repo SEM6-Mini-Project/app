@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:prediction/screens/splash.dart';
 import 'package:prediction/screens/loginpage.dart';
+import 'package:prediction/utils/styles.dart';
 
 class Dashboard extends StatelessWidget {
   double _drawerIconSize = 24;
@@ -15,7 +16,7 @@ class Dashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.orange,
+        backgroundColor: EXTRA,
         appBar: AppBar(
           // leading: IconButton(
           //   icon: Icon(
@@ -24,7 +25,7 @@ class Dashboard extends StatelessWidget {
           //   ),
           //   onPressed: () => Navigator.pop(context),
           // ),
-          backgroundColor: Colors.purple.shade400,
+          backgroundColor: PRIMARY,
           title: Text(
             'Dashboard',
             style: TextStyle(color: Colors.white),
@@ -42,30 +43,21 @@ class Dashboard extends StatelessWidget {
                   1.0
                 ],
                     colors: [
-                  Theme.of(context).primaryColor.withOpacity(0.2),
-                  Theme.of(context).accentColor.withOpacity(0.5),
+                  PRIMARY,
+                  SECONDARY,
                 ])),
             child: ListView(
               children: [
                 DrawerHeader(
                   decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      stops: [0.0, 1.0],
-                      colors: [
-                        Theme.of(context).primaryColor,
-                        Theme.of(context).accentColor,
-                      ],
-                    ),
+                    color: PRIMARY,
                   ),
                   child: Container(
                     alignment: Alignment.bottomLeft,
                     child: Text(
                       "Welcome",
                       style: TextStyle(
-                          fontSize: 25,
+                          fontSize: 32,
                           color: Colors.white,
                           fontWeight: FontWeight.bold),
                     ),
@@ -75,12 +67,11 @@ class Dashboard extends StatelessWidget {
                   leading: Icon(
                     Icons.screen_lock_landscape_rounded,
                     size: _drawerIconSize,
-                    color: Theme.of(context).accentColor,
+                    color: EXTRA,
                   ),
                   title: Text(
                     'Splash Screen',
-                    style: TextStyle(
-                        fontSize: 17, color: Theme.of(context).accentColor),
+                    style: TextStyle(fontSize: 17, color: EXTRA),
                   ),
                   onTap: () {
                     Navigator.push(
@@ -91,15 +82,16 @@ class Dashboard extends StatelessWidget {
                                 )));
                   },
                 ),
+                Divider(
+                  color: PRIMARY,
+                  height: 1,
+                ),
                 ListTile(
                   leading: Icon(Icons.login_rounded,
-                      size: _drawerIconSize,
-                      color: Theme.of(context).accentColor),
+                      size: _drawerIconSize, color: EXTRA),
                   title: Text(
                     'Login Page',
-                    style: TextStyle(
-                        fontSize: _drawerFontSize,
-                        color: Theme.of(context).accentColor),
+                    style: TextStyle(fontSize: _drawerFontSize, color: EXTRA),
                   ),
                   onTap: () {
                     Navigator.push(
@@ -109,18 +101,15 @@ class Dashboard extends StatelessWidget {
                   },
                 ),
                 Divider(
-                  color: Theme.of(context).primaryColor,
+                  color: PRIMARY,
                   height: 1,
                 ),
                 ListTile(
                   leading: Icon(Icons.person_add_alt_1,
-                      size: _drawerIconSize,
-                      color: Theme.of(context).accentColor),
+                      size: _drawerIconSize, color: EXTRA),
                   title: Text(
                     'Registration Page',
-                    style: TextStyle(
-                        fontSize: _drawerFontSize,
-                        color: Theme.of(context).accentColor),
+                    style: TextStyle(fontSize: _drawerFontSize, color: EXTRA),
                   ),
                   onTap: () {
                     Navigator.push(
@@ -130,20 +119,18 @@ class Dashboard extends StatelessWidget {
                   },
                 ),
                 Divider(
-                  color: Theme.of(context).primaryColor,
+                  color: PRIMARY,
                   height: 1,
                 ),
                 ListTile(
                   leading: Icon(
                     Icons.password_rounded,
                     size: _drawerIconSize,
-                    color: Theme.of(context).accentColor,
+                    color: EXTRA,
                   ),
                   title: Text(
                     'Forgot Password Page',
-                    style: TextStyle(
-                        fontSize: _drawerFontSize,
-                        color: Theme.of(context).accentColor),
+                    style: TextStyle(fontSize: _drawerFontSize, color: EXTRA),
                   ),
                   onTap: () {
                     Navigator.push(
@@ -153,20 +140,18 @@ class Dashboard extends StatelessWidget {
                   },
                 ),
                 Divider(
-                  color: Theme.of(context).primaryColor,
+                  color: PRIMARY,
                   height: 1,
                 ),
                 ListTile(
                   leading: Icon(
                     Icons.verified_user_sharp,
                     size: _drawerIconSize,
-                    color: Theme.of(context).accentColor,
+                    color: EXTRA,
                   ),
                   title: Text(
                     'Verification Page',
-                    style: TextStyle(
-                        fontSize: _drawerFontSize,
-                        color: Theme.of(context).accentColor),
+                    style: TextStyle(fontSize: _drawerFontSize, color: EXTRA),
                   ),
                   onTap: () {
                     Navigator.push(
@@ -176,20 +161,18 @@ class Dashboard extends StatelessWidget {
                   },
                 ),
                 Divider(
-                  color: Theme.of(context).primaryColor,
+                  color: PRIMARY,
                   height: 1,
                 ),
                 ListTile(
                   leading: Icon(
                     Icons.logout_rounded,
                     size: _drawerIconSize,
-                    color: Theme.of(context).accentColor,
+                    color: EXTRA,
                   ),
                   title: Text(
                     'Logout',
-                    style: TextStyle(
-                        fontSize: _drawerFontSize,
-                        color: Theme.of(context).accentColor),
+                    style: TextStyle(fontSize: _drawerFontSize, color: EXTRA),
                   ),
                   onTap: () {
                     SystemNavigator.pop();
@@ -221,8 +204,8 @@ class Dashboard extends StatelessWidget {
                 },
                 child: Text('Predict'),
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.orange,
-                  onPrimary: Colors.black,
+                  primary: SECONDARY,
+                  onPrimary: EXTRA,
                   textStyle: TextStyle(fontSize: 34),
                 ),
               ),
@@ -232,8 +215,8 @@ class Dashboard extends StatelessWidget {
                 },
                 child: Text('Profile'),
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.black,
-                  onPrimary: Colors.orange,
+                  primary: PRIMARY,
+                  onPrimary: EXTRA,
                   textStyle: TextStyle(fontSize: 34),
                 ),
               ),
