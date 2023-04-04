@@ -50,7 +50,7 @@ class LoginUiApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.grey.shade100,
         primarySwatch: Colors.grey,
       ),
-      home: Dashboard(),
+      home: SignInScreen(),
     );
   }
 }
