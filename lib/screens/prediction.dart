@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import '../function.dart';
 import 'package:flutter/material.dart';
@@ -12,232 +12,324 @@ class Prediction extends StatefulWidget {
 }
 
 class _PredictionState extends State<Prediction> {
-  TextEditingController X1Controller = TextEditingController();
-  TextEditingController X2Controller = TextEditingController();
-  TextEditingController X3Controller = TextEditingController();
-  TextEditingController X4Controller = TextEditingController();
-  TextEditingController X5Controller = TextEditingController();
-  TextEditingController X6Controller = TextEditingController();
-  TextEditingController X7Controller = TextEditingController();
-  TextEditingController X8Controller = TextEditingController();
-  TextEditingController X9Controller = TextEditingController();
-  TextEditingController X10Controller = TextEditingController();
-  TextEditingController X11Controller = TextEditingController();
-  TextEditingController X12Controller = TextEditingController();
-  TextEditingController X13Controller = TextEditingController();
-  TextEditingController X14Controller = TextEditingController();
-  TextEditingController X15Controller = TextEditingController();
-  TextEditingController X16Controller = TextEditingController();
-  TextEditingController X17Controller = TextEditingController();
-  TextEditingController X18Controller = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  TextEditingController _controllerX1 = TextEditingController();
+  TextEditingController _controllerX2 = TextEditingController();
+  TextEditingController _controllerX3 = TextEditingController();
+  TextEditingController _controllerX4 = TextEditingController();
+  TextEditingController _controllerX5 = TextEditingController();
+  TextEditingController _controllerX6 = TextEditingController();
+  TextEditingController _controllerX7 = TextEditingController();
+  TextEditingController _controllerX8 = TextEditingController();
+  TextEditingController _controllerX9 = TextEditingController();
+  TextEditingController _controllerX10 = TextEditingController();
+  TextEditingController _controllerX11 = TextEditingController();
+  TextEditingController _controllerX12 = TextEditingController();
+  TextEditingController _controllerX13 = TextEditingController();
+  TextEditingController _controllerX14 = TextEditingController();
+  TextEditingController _controllerX15 = TextEditingController();
+  TextEditingController _controllerX16 = TextEditingController();
+  TextEditingController _controllerX17 = TextEditingController();
+  TextEditingController _controllerX18 = TextEditingController();
+
+  String _predictionResult = '';
+
+  Future<void> _submitForm() async {
+    final response =
+        await http.post(Uri.parse('http://127.0.0.1:5000/prediction'), body: {
+      'X1': _controllerX1.text,
+      'X2': _controllerX2.text,
+      'X3': _controllerX3.text,
+      'X4': _controllerX4.text,
+      'X5': _controllerX5.text,
+      'X6': _controllerX6.text,
+      'X7': _controllerX7.text,
+      'X8': _controllerX8.text,
+      'X9': _controllerX9.text,
+      'X10': _controllerX10.text,
+      'X11': _controllerX11.text,
+      'X12': _controllerX12.text,
+      'X13': _controllerX13.text,
+      'X14': _controllerX14.text,
+      'X15': _controllerX15.text,
+      'X16': _controllerX16.text,
+      'X17': _controllerX17.text,
+      'X18': _controllerX18.text,
+    });
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+        print("apiii");
+      setState(() {
+        _predictionResult = data['result'];
+      });
+    } else {
+      setState(() {
+        _predictionResult = 'Failed to get prediction result.';
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Text Fields'),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(height: 20),
-            TextField(
-              controller: X1Controller,
-              decoration: InputDecoration(
-                labelText: 'Field 1',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 20),
-            TextField(
-              controller: X2Controller,
-              decoration: InputDecoration(
-                labelText: 'Field 2',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 20),
-            TextField(
-              controller: X3Controller,
-              decoration: InputDecoration(
-                labelText: 'Field 3',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 20),
-            TextField(
-              controller: X4Controller,
-              decoration: InputDecoration(
-                labelText: 'Field 4',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 20),
-            TextField(
-              controller: X5Controller,
-              decoration: InputDecoration(
-                labelText: 'Field 5',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 20),
-            TextField(
-              controller: X6Controller,
-              decoration: InputDecoration(
-                labelText: 'Field 6',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 20),
-            TextField(
-              controller: X7Controller,
-              decoration: InputDecoration(
-                labelText: 'Field 7',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 20),
-            TextField(
-              controller: X8Controller,
-              decoration: InputDecoration(
-                labelText: 'Field 8',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 20),
-            TextField(
-              controller: X9Controller,
-              decoration: InputDecoration(
-                labelText: 'Field 9',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 20),
-            TextField(
-              controller: X10Controller,
-              decoration: InputDecoration(
-                labelText: 'Field 10',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 20),
-            TextField(
-              controller: X11Controller,
-              decoration: InputDecoration(
-                labelText: 'Field 11',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 20),
-            TextField(
-              controller: X12Controller,
-              decoration: InputDecoration(
-                labelText: 'Field 12',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 20),
-            TextField(
-              controller: X13Controller,
-              decoration: InputDecoration(
-                labelText: 'Field 13',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 20),
-            TextField(
-              controller: X14Controller,
-              decoration: InputDecoration(
-                labelText: 'Field 14',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 20),
-            TextField(
-              controller: X15Controller,
-              decoration: InputDecoration(
-                labelText: 'Field 15',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 20),
-            TextField(
-              controller: X16Controller,
-              decoration: InputDecoration(
-                labelText: 'Field 16',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 20),
-            TextField(
-              controller: X17Controller,
-              decoration: InputDecoration(
-                labelText: 'Field 17',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 20),
-            TextField(
-              controller: X18Controller,
-              decoration: InputDecoration(
-                labelText: 'Field 18',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 20),
-            TextButton(
-                onPressed: () async {},
-                child: Text(
-                  'F  ',
-                  style: TextStyle(fontSize: 20),
-                )),
-          ],
+        appBar: AppBar(
+          title: Text('Text Fields'),
         ),
-      ),
-    );
-  }
-
-  Future<void> submitData() async {
-    final X1 = X1Controller.text;
-    final X2 = X2Controller.text;
-    final X3 = X3Controller.text;
-    final X4 = X4Controller.text;
-    final X5 = X5Controller.text;
-    final X6 = X6Controller.text;
-    final X7 = X7Controller.text;
-    final X8 = X8Controller.text;
-    final X9 = X9Controller.text;
-    final X10 = X10Controller.text;
-    final X11 = X11Controller.text;
-    final X12 = X12Controller.text;
-    final X13 = X13Controller.text;
-    final X14 = X14Controller.text;
-    final X15 = X15Controller.text;
-    final X16 = X16Controller.text;
-    final X17 = X17Controller.text;
-    final X18 = X18Controller.text;
-    final body = {
-      "X1": X1,
-      "X2": X2,
-      "X3": X3,
-      "X4": X4,
-      "X5": X5,
-      "X6": X6,
-      "X7": X7,
-      "X8": X8,
-      "X9": X9,
-      "X10": X10,
-      "X11": X11,
-      "X12": X12,
-      "X13": X13,
-      "X14": X14,
-      "X15": X15,
-      "X16": X16,
-      "X17": X17,
-      "X18": X18,
-    };
-
-    final url = 'http://127.0.0.1:5000/';
-    final uri = Uri.parse(url);
-    final response =  await http.post(uri, body:jsonEncode(body));
+        body: Padding(
+          padding: EdgeInsets.all(16),
+          child: Form(
+            key: _formKey,
+            child: SingleChildScrollView(
+                child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                TextFormField(
+                  controller: _controllerX1,
+                  decoration: InputDecoration(
+                    labelText: "X1",
+                  ),
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter X1 value';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _controllerX2,
+                  decoration: InputDecoration(
+                    labelText: "X2",
+                  ),
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter X3 value';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _controllerX3,
+                  decoration: InputDecoration(
+                    labelText: "X1",
+                  ),
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter X1 value';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _controllerX4,
+                  decoration: InputDecoration(
+                    labelText: "X1",
+                  ),
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter X1 value';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _controllerX5,
+                  decoration: InputDecoration(
+                    labelText: "X1",
+                  ),
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter X1 value';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _controllerX6,
+                  decoration: InputDecoration(
+                    labelText: "X1",
+                  ),
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter X1 value';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _controllerX7,
+                  decoration: InputDecoration(
+                    labelText: "X1",
+                  ),
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter X1 value';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _controllerX8,
+                  decoration: InputDecoration(
+                    labelText: "X1",
+                  ),
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter X1 value';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _controllerX9,
+                  decoration: InputDecoration(
+                    labelText: "X1",
+                  ),
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter X1 value';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _controllerX10,
+                  decoration: InputDecoration(
+                    labelText: "X1",
+                  ),
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter X1 value';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _controllerX11,
+                  decoration: InputDecoration(
+                    labelText: "X1",
+                  ),
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter X1 value';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _controllerX12,
+                  decoration: InputDecoration(
+                    labelText: "X1",
+                  ),
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter X1 value';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _controllerX13,
+                  decoration: InputDecoration(
+                    labelText: "X1",
+                  ),
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter X1 value';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _controllerX14,
+                  decoration: InputDecoration(
+                    labelText: "X1",
+                  ),
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter X1 value';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _controllerX15,
+                  decoration: InputDecoration(
+                    labelText: "X1",
+                  ),
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter X1 value';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _controllerX16,
+                  decoration: InputDecoration(
+                    labelText: "X1",
+                  ),
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter X1 value';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _controllerX17,
+                  decoration: InputDecoration(
+                    labelText: "X1",
+                  ),
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter X1 value';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _controllerX18,
+                  decoration: InputDecoration(
+                    labelText: "X1",
+                  ),
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter X1 value';
+                    }
+                    return null;
+                  },
+                ),
+                TextButton(
+                  onPressed: () async {
+                    await _submitForm();
+                  },
+                  child: Text(
+                    'F',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ),
+              ],
+            )),
+          ),
+        ));
   }
 }
