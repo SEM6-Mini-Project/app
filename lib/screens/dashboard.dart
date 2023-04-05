@@ -200,7 +200,11 @@ class Dashboard extends StatelessWidget {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  MaterialPageRoute(builder: (context) => PredictionPage());
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PredictionPage(),
+                      ));
                 },
                 child: Text('Predict'),
                 style: ElevatedButton.styleFrom(
