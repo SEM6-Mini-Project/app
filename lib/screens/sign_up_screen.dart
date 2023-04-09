@@ -3,6 +3,7 @@ import 'package:prediction/reusable_widgets/reusable_widget.dart';
 import 'package:prediction/screens/home.dart';
 import 'package:prediction/utils/color_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:prediction/screens/Registration.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -15,6 +16,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController _passwordTextController = TextEditingController();
   TextEditingController _emailTextController = TextEditingController();
   TextEditingController _userNameTextController = TextEditingController();
+  TextEditingController _ageTextController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,11 +33,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [
-            hexStringToColor("CB2B93"),
-            hexStringToColor("9546C4"),
-            hexStringToColor("5E61F4")
-          ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+              color: hexStringToColor("9546C4")),
           child: SingleChildScrollView(
               child: Padding(
             padding: EdgeInsets.fromLTRB(20, 120, 20, 0),
@@ -44,7 +42,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                reusableTextField("Enter UserName", Icons.person_outline, false,
+                reusableTextField("Enter Company Name", Icons.person_outline, false,
                     _userNameTextController),
                 const SizedBox(
                   height: 20,
@@ -54,6 +52,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 const SizedBox(
                   height: 20,
                 ),
+                reusableTextField("Enter Company age", Icons.android_outlined, false,
+                    _ageTextController),
+                const SizedBox(
+                  height: 20,
+                ),                
                 reusableTextField("Enter Password", Icons.lock_outlined, true,
                     _passwordTextController),
                 const SizedBox(

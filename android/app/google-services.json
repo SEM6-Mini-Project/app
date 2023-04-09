@@ -1,10 +1,40 @@
 {
   "project_info": {
     "project_number": "207241405329",
+    "firebase_url": "https://bankruptcy-prediction-f1817-default-rtdb.firebaseio.com",
     "project_id": "bankruptcy-prediction-f1817",
     "storage_bucket": "bankruptcy-prediction-f1817.appspot.com"
   },
   "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:207241405329:android:0279c99919cbcc898ef030",
+        "android_client_info": {
+          "package_name": "com.example.prediction"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "207241405329-comp6a8pc4opk1j4l7n8u5trrhhk48tn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgSDj0p4FR_4HyU5w3yLlefHSRl92iKXI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "207241405329-comp6a8pc4opk1j4l7n8u5trrhhk48tn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
     {
       "client_info": {
         "mobilesdk_app_id": "1:207241405329:android:9b4f57b1e28c23608ef030",
