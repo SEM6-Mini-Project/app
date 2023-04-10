@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:prediction/screens/splash.dart';
-import 'package:prediction/screens/loginpage.dart';
 
 class AppDrawer extends StatelessWidget {
   double _drawerIconSize = 24;
@@ -65,14 +64,14 @@ class AppDrawer extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 17, color: Theme.of(context).accentColor),
                 ),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => SplashScreen(
-                                title: 'Company Bankruptcy',
-                              )));
-                },
+                // onTap: () {
+                //   Navigator.push(
+                //       context,
+                //       MaterialPageRoute(
+                //           builder: (context) => SplashScreen(
+                //                 title: 'Company Bankruptcy',
+                //               )));
+                // },
               ),
               ListTile(
                 leading: Icon(Icons.login_rounded,

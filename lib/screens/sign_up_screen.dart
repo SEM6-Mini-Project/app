@@ -1,10 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:prediction/reusable_widgets/reusable_widget.dart';
 import 'package:prediction/screens/home.dart';
-import 'package:prediction/screens/sign_in_screen.dart';
 import 'package:prediction/utils/color_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:prediction/utils/styles.dart';
+import 'package:prediction/screens/Registration.dart';
+
+import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/cupertino.dart';
+
+import 'package:firebase_database/firebase_database.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -17,6 +21,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController _passwordTextController = TextEditingController();
   TextEditingController _emailTextController = TextEditingController();
   TextEditingController _userNameTextController = TextEditingController();
+  TextEditingController _ageTextController = TextEditingController();
+
+  late DatabaseReference _dbref;
+  // final databaseReference = FirebaseDatabase.instance.reference();
+  @override
+  void initState() {
+    super.initState();
+    _dbref = FirebaseDatabase.instance.ref();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,20 +40,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
         elevation: 0,
         title: const Text(
           "Sign Up",
-          style: TextStyle(
-              fontSize: 40, fontWeight: FontWeight.bold, color: EXTRA),
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
       ),
       body: Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
-          decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [
-            // hexStringToColor("CB2B93"),
-            // hexStringToColor("9546C4"),
-            // hexStringToColor("5E61F4")
-            PRIMARY, SECONDARY, EXTRA
-          ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+          decoration: BoxDecoration(color: hexStringToColor("9546C4")),
           child: SingleChildScrollView(
               child: Padding(
             padding: EdgeInsets.fromLTRB(20, 120, 20, 0),
@@ -48,13 +55,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                reusableTextField("Enter UserName", Icons.person_outline, false,
-                    _userNameTextController),
+                reusableTextField("Enter Company Name", Icons.person_outline,
+                    false, _userNameTextController),
                 const SizedBox(
                   height: 20,
                 ),
                 reusableTextField("Enter Email Id", Icons.person_outline, false,
                     _emailTextController),
+                const SizedBox(
+                  height: 20,
+                ),
+                reusableTextField("Enter Company age", Icons.android_outlined,
+                    false, _ageTextController),
                 const SizedBox(
                   height: 20,
                 ),
@@ -69,15 +81,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           email: _emailTextController.text,
                           password: _passwordTextController.text)
                       .then((value) {
+                    _createDB();
                     print("Created New Account");
                     print('email: ' +
                         _emailTextController.text +
                         "\n pass: " +
                         _passwordTextController.text);
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => SignInScreen()));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => HomeScreen()));
                   }).onError((error, stackTrace) {
                     print("Error ${error.toString()}");
                   });
@@ -86,5 +97,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ),
           ))),
     );
+  }
+
+  _createDB() {
+    _dbref.child('/userID').push().set({
+      'email': _emailTextController.text,
+      'password': _passwordTextController.text,
+      'userName': _userNameTextController.text,
+      'companyAge': _ageTextController.text
+    });
   }
 }

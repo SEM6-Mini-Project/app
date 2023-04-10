@@ -1,12 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:prediction/reusable_widgets/reusable_widget.dart';
-import 'package:prediction/screens/dashboard.dart';
 import 'package:prediction/screens/home.dart';
 import 'package:prediction/screens/reset_password.dart';
 import 'package:prediction/screens/sign_up_screen.dart';
 import 'package:prediction/utils/color_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:prediction/utils/styles.dart';
+
+import 'package:prediction/screens/prediction.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -25,12 +25,7 @@ class _SignInScreenState extends State<SignInScreen> {
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
-            // color: SECONDARY
-            gradient: LinearGradient(
-                colors: [PRIMARY, SECONDARY, EXTRA],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter)),
+        decoration: BoxDecoration(color: hexStringToColor("9546C4")),
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.fromLTRB(
@@ -41,8 +36,8 @@ class _SignInScreenState extends State<SignInScreen> {
                 const SizedBox(
                   height: 30,
                 ),
-                reusableTextField("Enter Email Address", Icons.person_outline,
-                    false, _emailTextController),
+                reusableTextField("Enter Email", Icons.person_outline, false,
+                    _emailTextController),
                 const SizedBox(
                   height: 20,
                 ),
@@ -59,7 +54,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           password: _passwordTextController.text)
                       .then((value) {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Dashboard()));
+                        MaterialPageRoute(builder: (context) => HomeScreen()));
                   }).onError((error, stackTrace) {
                     print("Error ${error.toString()}");
                   });
