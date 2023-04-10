@@ -18,8 +18,6 @@ class SignInScreen extends StatefulWidget {
 class _SignInScreenState extends State<SignInScreen> {
   TextEditingController _passwordTextController = TextEditingController();
   TextEditingController _emailTextController = TextEditingController();
-  
-  
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +25,7 @@ class _SignInScreenState extends State<SignInScreen> {
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
-            color: hexStringToColor("9546C4")),
+        decoration: BoxDecoration(color: hexStringToColor("9546C4")),
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.fromLTRB(
