@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:prediction/screens/dashboard.dart';
 
 class PredictionPage extends StatefulWidget {
   const PredictionPage({Key? key}) : super(key: key);
@@ -52,14 +53,14 @@ class _PredictionPageState extends State<PredictionPage> {
       'input_8': _input8Controller.text,
       'input_9': _input9Controller.text,
       'input_10': _input10Controller.text,
-      'input_11': _input10Controller.text,
-      'input_12': _input10Controller.text,
-      'input_13': _input10Controller.text,
-      'input_14': _input10Controller.text,
-      'input_15': _input10Controller.text,
-      'input_16': _input10Controller.text,
-      'input_17': _input10Controller.text,
-      'input_18': _input10Controller.text,
+      'input_11': _input11Controller.text,
+      'input_12': _input12Controller.text,
+      'input_13': _input13Controller.text,
+      'input_14': _input14Controller.text,
+      'input_15': _input15Controller.text,
+      'input_16': _input16Controller.text,
+      'input_17': _input17Controller.text,
+      'input_18': _input18Controller.text,
     };
     final response = await http.post(Uri.parse(apiUrl),
         headers: {'Content-Type': 'application/json'},
@@ -82,7 +83,10 @@ class _PredictionPageState extends State<PredictionPage> {
         title: const Text('Prediction'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const dashboard()));
+          },
         ),
         backgroundColor: Colors.blue,
       ),
