@@ -21,6 +21,7 @@ Future<void> main() async {
     print('Failed to initialize Firebase: $e');
   }
   runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
     home: MyApp(),
   ));
 }
