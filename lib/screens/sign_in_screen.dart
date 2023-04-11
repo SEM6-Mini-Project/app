@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:prediction/screens/dashboard.dart';
 import 'package:prediction/screens/reset_password.dart';
 
 import '../reusable_widgets/reusable_widget.dart';
-import 'home.dart';
 import 'sign_up_screen.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -14,8 +14,8 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  TextEditingController _passwordTextController = TextEditingController();
-  TextEditingController _emailTextController = TextEditingController();
+  final TextEditingController _passwordTextController = TextEditingController();
+  final TextEditingController _emailTextController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class _SignInScreenState extends State<SignInScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Container(
+            SizedBox(
               height: 400,
               child: Stack(
                 children: <Widget>[
@@ -35,7 +35,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     height: 400,
                     width: width,
                     child: Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           image: DecorationImage(
                               image: AssetImage('assets/background.png'),
                               fit: BoxFit.fill)),
@@ -45,7 +45,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     height: 400,
                     width: width + 20,
                     child: Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           image: DecorationImage(
                               image: AssetImage('assets/background-2.png'),
                               fit: BoxFit.fill)),
@@ -55,25 +55,25 @@ class _SignInScreenState extends State<SignInScreen> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 40),
+              padding: const EdgeInsets.symmetric(horizontal: 40),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(
+                  const Text(
                     "Login",
                     style: TextStyle(
                         color: Color.fromRGBO(49, 39, 79, 1),
                         fontWeight: FontWeight.bold,
                         fontSize: 30),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.white,
-                        boxShadow: [
+                        boxShadow: const [
                           BoxShadow(
                             color: Color.fromRGBO(196, 135, 198, .3),
                             blurRadius: 20,
@@ -83,24 +83,24 @@ class _SignInScreenState extends State<SignInScreen> {
                     child: Column(
                       children: <Widget>[
                         Container(
-                          padding: EdgeInsets.all(10),
+                          padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
                               border: Border(
                                   bottom:
                                       BorderSide(color: Colors.grey.shade200))),
                           child: TextField(
                             controller: _emailTextController,
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                                 border: InputBorder.none,
                                 hintText: "Email",
                                 hintStyle: TextStyle(color: Colors.grey)),
                           ),
                         ),
                         Container(
-                          padding: EdgeInsets.all(10),
+                          padding: const EdgeInsets.all(10),
                           child: TextField(
                             controller: _passwordTextController,
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                                 border: InputBorder.none,
                                 hintText: "Password",
                                 hintStyle: TextStyle(color: Colors.grey)),
@@ -109,7 +109,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   forgetPassword(context),
@@ -122,9 +122,9 @@ class _SignInScreenState extends State<SignInScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => HomeScreen()));
+                              builder: (context) => const dashboard()));
                     }).onError((error, stackTrace) {
-                      print("Error ${error.toString()}");
+                      // print("Error ${error.toString()}");
                     });
                   }),
                   signUpOption(),
@@ -146,7 +146,7 @@ class _SignInScreenState extends State<SignInScreen> {
         GestureDetector(
           onTap: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => SignUpScreen()));
+                MaterialPageRoute(builder: (context) => const SignUpScreen()));
           },
           child: const Text(
             " Sign Up",
@@ -170,8 +170,8 @@ class _SignInScreenState extends State<SignInScreen> {
           style: TextStyle(color: Color.fromRGBO(196, 135, 198, 1)),
           textAlign: TextAlign.right,
         ),
-        onPressed: () => Navigator.push(
-            context, MaterialPageRoute(builder: (context) => ResetPassword())),
+        onPressed: () => Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const ResetPassword())),
       ),
     );
   }
