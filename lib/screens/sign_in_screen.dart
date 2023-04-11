@@ -1,12 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:prediction/reusable_widgets/reusable_widget.dart';
-import 'package:prediction/screens/home.dart';
-import 'package:prediction/screens/reset_password.dart';
-import 'package:prediction/screens/sign_up_screen.dart';
-import 'package:prediction/utils/color_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:prediction/screens/reset_password.dart';
 
-import 'package:prediction/screens/prediction.dart';
+import '../reusable_widgets/reusable_widget.dart';
+import 'home.dart';
+import 'sign_up_screen.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -21,48 +19,119 @@ class _SignInScreenState extends State<SignInScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(color: hexStringToColor("9546C4")),
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.fromLTRB(
-                20, MediaQuery.of(context).size.height * 0.2, 20, 0),
-            child: Column(
-              children: <Widget>[
-                // logoWidget("assets/images/logo1.png"),
-                const SizedBox(
-                  height: 30,
-                ),
-                reusableTextField("Enter Email", Icons.person_outline, false,
-                    _emailTextController),
-                const SizedBox(
-                  height: 20,
-                ),
-                reusableTextField("Enter Password", Icons.lock_outline, true,
-                    _passwordTextController),
-                const SizedBox(
-                  height: 5,
-                ),
-                forgetPassword(context),
-                firebaseUIButton(context, "Sign In", () {
-                  FirebaseAuth.instance
-                      .signInWithEmailAndPassword(
-                          email: _emailTextController.text,
-                          password: _passwordTextController.text)
-                      .then((value) {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()));
-                  }).onError((error, stackTrace) {
-                    print("Error ${error.toString()}");
-                  });
-                }),
-                signUpOption()
-              ],
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              height: 400,
+              child: Stack(
+                children: <Widget>[
+                  Positioned(
+                    top: -40,
+                    height: 400,
+                    width: width,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage('assets/background.png'),
+                              fit: BoxFit.fill)),
+                    ),
+                  ),
+                  Positioned(
+                    height: 400,
+                    width: width + 20,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage('assets/background-2.png'),
+                              fit: BoxFit.fill)),
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 40),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    "Login",
+                    style: TextStyle(
+                        color: Color.fromRGBO(49, 39, 79, 1),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 30),
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Color.fromRGBO(196, 135, 198, .3),
+                            blurRadius: 20,
+                            offset: Offset(0, 10),
+                          )
+                        ]),
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                              border: Border(
+                                  bottom:
+                                      BorderSide(color: Colors.grey.shade200))),
+                          child: TextField(
+                            controller: _emailTextController,
+                            decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: "Email",
+                                hintStyle: TextStyle(color: Colors.grey)),
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(10),
+                          child: TextField(
+                            controller: _passwordTextController,
+                            decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: "Password",
+                                hintStyle: TextStyle(color: Colors.grey)),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  forgetPassword(context),
+                  firebaseUIButton(context, "Sign In", () {
+                    FirebaseAuth.instance
+                        .signInWithEmailAndPassword(
+                            email: _emailTextController.text,
+                            password: _passwordTextController.text)
+                        .then((value) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HomeScreen()));
+                    }).onError((error, stackTrace) {
+                      print("Error ${error.toString()}");
+                    });
+                  }),
+                  signUpOption(),
+                ],
+              ),
+            )
+          ],
         ),
       ),
     );
@@ -73,7 +142,7 @@ class _SignInScreenState extends State<SignInScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Text("Don't have account?",
-            style: TextStyle(color: Colors.white70)),
+            style: TextStyle(color: Color.fromRGBO(49, 39, 79, .6))),
         GestureDetector(
           onTap: () {
             Navigator.push(context,
@@ -81,7 +150,9 @@ class _SignInScreenState extends State<SignInScreen> {
           },
           child: const Text(
             " Sign Up",
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                color: Color.fromRGBO(49, 39, 79, .6),
+                fontWeight: FontWeight.bold),
           ),
         )
       ],
@@ -92,11 +163,11 @@ class _SignInScreenState extends State<SignInScreen> {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: 35,
-      alignment: Alignment.bottomRight,
+      alignment: Alignment.center,
       child: TextButton(
         child: const Text(
           "Forgot Password?",
-          style: TextStyle(color: Colors.white70),
+          style: TextStyle(color: Color.fromRGBO(196, 135, 198, 1)),
           textAlign: TextAlign.right,
         ),
         onPressed: () => Navigator.push(
