@@ -20,7 +20,7 @@ Future<void> main() async {
   } catch (e) {
     print('Failed to initialize Firebase: $e');
   }
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     debugShowCheckedModeBanner: false,
     home: MyApp(),
   ));
@@ -33,6 +33,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,

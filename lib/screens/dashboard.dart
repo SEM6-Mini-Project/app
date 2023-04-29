@@ -76,33 +76,6 @@ class _dashboardState extends State<dashboard> {
               ),
             ),
           ),
-          Container(
-            color: Theme.of(context).primaryColor,
-            child: Container(
-              color: Colors.white,
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              // decoration: const BoxDecoration(
-              //     color: Colors.white,
-              //     borderRadius:
-              //         BorderRadius.only(topLeft: Radius.circular(200))),
-              child: GridView.count(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                crossAxisCount: 1,
-                crossAxisSpacing: 40,
-                mainAxisSpacing: 30,
-                children: [
-                  itemDashboard(
-                      'My Profile', Icons.bar_chart, Colors.deepOrange, () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const myProfile()));
-                  }),
-                ],
-              ),
-            ),
-          ),
           const SizedBox(
             height: 25,
           ),
