@@ -1,6 +1,6 @@
-# prediction
+# MOBILE APPLICATION TO PREDICT COMPANY BANKRUPTCY
 
-A new Flutter project.
+A mobile application that uses the Random Forest Machine Learning Algorithm and Flutter framework to predict the likelihood of company bankruptcy based on financial ratios.
 
 ## Getting Started
 
